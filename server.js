@@ -21,7 +21,7 @@ app.use(cors());
 app.use("/api/v1/auth",authroutes);
 app.use("/api/v1/category",CategoryRoutes);
 app.use("/api/v1/product",ProductRoute);
-app.use(express.static(path.join(__dirname,'./client/build')))
+app.use(express.static(path.join(__dirname,'client/build')))
 
 
 

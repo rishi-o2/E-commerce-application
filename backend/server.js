@@ -7,17 +7,20 @@ import authroutes from "./routes/authroutes.js";
 import CategoryRoutes from "./routes/CategoryRoutes.js";
 import cors from "cors";
 import ProductRoute from "./routes/ProductRoute.js";
-import  path  from "path";
+import path from "path";
 import { fileURLToPath } from "url";
 
-
-
 const app = express();
+
+// Workaround for __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-connectDB()
+
+connectDB();
+
 app.use(express.json());
 app.use(cors());
+<<<<<<< HEAD:backend/server.js
 app.use("/api/v1/auth",authroutes);
 app.use("/api/v1/category",CategoryRoutes);
 app.use("/api/v1/product",ProductRoute);
@@ -29,9 +32,21 @@ app.get("*", function (_, res) {
       res.status(500).send(err);
     }
   );
+=======
+app.use("/api/v1/auth", authroutes);
+app.use("/api/v1/category", CategoryRoutes);
+app.use("/api/v1/product", ProductRoute);
+app.use(express.static(path.join(__dirname, './client/build')));
+
+dotenv.config();
+
+app.use('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+>>>>>>> f12f84c6956330ffdb0be7e56e5228eb3896aa2d:server.js
 });
 
 const PORT = 8000;
-app.listen(PORT,()=>{
-    console.log(`server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });
+

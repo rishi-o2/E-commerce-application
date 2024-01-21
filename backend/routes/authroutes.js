@@ -1,6 +1,6 @@
 import express from "express"
 import {registercontroller,logincontroller,testcontroller, updateProfileController} from '../controllers/authcontroller.js'
-import { requireSignIn, isAdmin } from "../../middleware/middleware.js"
+import { requireSignIn, isAdmin } from "../middleware/middleware.js"
 import { forgotpasswordcontroller } from "../controllers/authcontroller.js"
 
 const router = express.Router()

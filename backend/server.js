@@ -21,20 +21,14 @@ app.use(cors());
 app.use("/api/v1/auth",authroutes);
 app.use("/api/v1/category",CategoryRoutes);
 app.use("/api/v1/product",ProductRoute);
-app.use(express.static(path.join(__dirname,'./client/build')))
-
-
-
-dotenv.config();
-// app.get('/',(req,res)=>{
-//    res.send(
-//     // messaage:"Welcome to ecommerce app",
-//     "<h1>Welcome to e commerce app</h1>"
-//    );
-// });
-app.use('*',function(req,res)
-{
-    res.sendFile(path.join(__dirname,'./client/build/index.html'));
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
 });
 
 const PORT = 8000;

@@ -10,7 +10,6 @@ export const Search = () => {
         <div className="text-center">
           <h1>Search Resuts</h1>
           <h6>
-          
             {values?.results.length < 1
               ? "No Products Found"
               : `Found ${values?.results.length}`}
@@ -18,10 +17,8 @@ export const Search = () => {
           <div className="d-flex flex-wrap mt-4">
             {values?.results.map((p) => (
               <div className="card m-2" style={{ width: "18rem" }}>
-              
                 <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  
+                  src={`https://e-commerce-application-6bev.onrender.com/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

@@ -24,15 +24,18 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
-        nonce,
-        cart,
-      },
-      {
-        headers: {
-          Authorization: auth?.token,
+      const { data } = await axios.post(
+        "https://e-commerce-application-6bev.onrender.com/api/v1/product/braintree/payment",
+        {
+          nonce,
+          cart,
         },
-      });
+        {
+          headers: {
+            Authorization: auth?.token,
+          },
+        }
+      );
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -48,12 +51,13 @@ const CartPage = () => {
    //get payment gateway token
    const getToken = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/braintree/token",
-      {
-        headers: {
-          Authorization: auth?.token,
-        },
-      }
+      const { data } = await axios.get(
+        "https://e-commerce-application-6bev.onrender.com/api/v1/product/braintree/token",
+        {
+          headers: {
+            Authorization: auth?.token,
+          },
+        }
       );
       setclientToken(data?.clientToken);
     } catch (error) {

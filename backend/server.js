@@ -20,33 +20,35 @@ connectDB();
 
 app.use(express.json());
 app.use(cors());
-<<<<<<< HEAD:backend/server.js
-app.use("/api/v1/auth",authroutes);
-app.use("/api/v1/category",CategoryRoutes);
-app.use("/api/v1/product",ProductRoute);
+
+app.use("/api/v1/auth", authroutes);
+app.use("/api/v1/category", CategoryRoutes);
+app.use("/api/v1/product", ProductRoute);
 app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", function (_, res) {
   res.sendFile(
     path.join(__dirname, "./client/build/index.html"),
     function (err) {
-      res.status(500).send(err);
+      if (err) {
+        res.status(500).send(err);
+      }
     }
   );
-=======
+});
+
 app.use("/api/v1/auth", authroutes);
 app.use("/api/v1/category", CategoryRoutes);
 app.use("/api/v1/product", ProductRoute);
-app.use(express.static(path.join(__dirname, './client/build')));
+
+
 
 dotenv.config();
 
-app.use('*', function (req, res) {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
->>>>>>> f12f84c6956330ffdb0be7e56e5228eb3896aa2d:server.js
+app.use('/message', function (req, res) {
+  res.send("Successfull");
 });
 
 const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
-

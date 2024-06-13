@@ -1,33 +1,22 @@
-import { useState, useEffect, createContext,useContext} from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 
+const CartContext = createContext();
+const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState([]);
 
-const AuthContext = createContext();
+  useEffect(() => {
+    let existingCartItem = localStorage.getItem("cart");
+    if (existingCartItem) setCart(JSON.parse(existingCartItem));
+  }, []);
 
-const AuthProvider = ({children})=>{
-    const [auth,setAuth]=useState({
-        user:null,
-        token:""
-    })
-    useEffect(()=>{
-        const data = localStorage.getItem('auth');
-        if(data)
-        {
-            const parsedata = JSON.parse(data);
-            setAuth({
-                ...auth,
-                user:parsedata.user,
-                token:parsedata.token
-            })
-        }
-
-    },[auth])
-    return (
-        <AuthContext.Provider value={{auth,setAuth}}>
-        {children}
-
-        </AuthContext.Provider>
-    )
+  return (
+    <CartContext.Provider value={[cart, setCart]}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
-const useAuth = ()=>useContext(AuthContext);
-export{useAuth,AuthProvider};
+// custom hook
+const useCart = () => useContext(CartContext);
+
+export { useCart, CartProvider };

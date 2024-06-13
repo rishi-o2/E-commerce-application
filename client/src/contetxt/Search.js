@@ -1,22 +1,20 @@
-import { useState, useContext, createContext, useEffect } from "react";
+import { useState, useContext, createContext } from "react";
 
-const CartContext = createContext();
-const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    let existingCartItem = localStorage.getItem("cart");
-    if (existingCartItem) setCart(JSON.parse(existingCartItem));
-  }, []);
+const SearchContext = createContext();
+const SearchProvider = ({ children }) => {
+  const [auth, setAuth] = useState({
+    keyword: "",
+    results: [],
+  });
 
   return (
-    <CartContext.Provider value={[cart, setCart]}>
+    <SearchContext.Provider value={[auth, setAuth]}>
       {children}
-    </CartContext.Provider>
+    </SearchContext.Provider>
   );
 };
 
 // custom hook
-const useCart = () => useContext(CartContext);
+const useSearch = () => useContext(SearchContext);
 
-export { useCart, CartProvider };
+export { useSearch, SearchProvider };

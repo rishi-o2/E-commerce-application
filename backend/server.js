@@ -41,10 +41,11 @@ app.use("/api/v1/category", CategoryRoutes);
 app.use("/api/v1/product", ProductRoute);
 app.use(express.static(path.join(__dirname, './client/build')));
 
+
 dotenv.config();
 
-app.use('*', function (req, res) {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
+app.use('/message', function (req, res) {
+  res.send("Successfull");
 });
 
 const PORT = 8000;

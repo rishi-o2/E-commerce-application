@@ -27,17 +27,21 @@ const Profile = () => {
   e.preventDefault();
   try {
     
-    const { data } = await axios.put("/api/v1/auth/profile", {
-      name,
-      email,
-      password,
-      phone,
-      address,
-    }, {
-      headers: {
-        "Authorization": auth?.token
+    const { data } = await axios.put(
+      "https://e-commerce-application-6bev.onrender.com/api/v1/auth/profile",
+      {
+        name,
+        email,
+        password,
+        phone,
+        address,
+      },
+      {
+        headers: {
+          Authorization: auth?.token,
+        },
       }
-    });
+    );
     
     if (data?.errro) {
       toast.error(data?.error);

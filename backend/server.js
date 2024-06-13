@@ -25,16 +25,7 @@ app.use("/api/v1/auth", authroutes);
 app.use("/api/v1/category", CategoryRoutes);
 app.use("/api/v1/product", ProductRoute);
 app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
+
 
 app.use("/api/v1/auth", authroutes);
 app.use("/api/v1/category", CategoryRoutes);

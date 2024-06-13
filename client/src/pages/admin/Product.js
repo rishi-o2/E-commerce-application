@@ -12,13 +12,13 @@ const Products = () => {
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/get-product",
-      {
-        headers: {
+      const { data } = await axios.get(
+        "https://e-commerce-application-6bev.onrender.com/api/v1/product/get-product",
+        {
+          headers: {
             Authorization: auth?.token,
           },
-
-    }
+        }
       );
       setProducts(data.products);
     } catch (error) {
